@@ -28,6 +28,11 @@ def begin_scanning(timeout, iso):
 	current_time = None
 
 	while True:
+		key = cv2.waitKey(1) & 0xFF
+
+		if key == ord('q'):
+			break
+
 		current_time = time.time()
 
 		if current_time - start_time >= timeout:
@@ -43,7 +48,7 @@ def process_frame(iso):
 	# grab the frame from the threaded video stream and resize it
 	# to have a maximum width of 800 pixels
 	frame = video_stream.read()
-	frame = imutils.resize(frame, width=1080, height = 720)
+	frame = imutils.resize(frame, width=512)
 	frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
 	# decode for bar codes
