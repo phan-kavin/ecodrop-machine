@@ -1,8 +1,18 @@
+import os
+
 import fb_util
 import card_util
 import cv_util
 
 import time
+
+def on_pi():
+	_, nodename, _, _, _ = os.uname()
+
+	if nodename == "raspberrypi":
+		return True
+	else:
+		return False
 
 # initialize everything else
 fb_util.init()
@@ -11,7 +21,7 @@ print("Firebase done initializing")
 card_util.init()
 print("Card swiper done initializing")
 
-cv_util.init(fps = 10, onPi = False)
+cv_util.init(fps = 30, onPi = on_pi())
 print("OpenCV done initializing")
 
 # begin program
@@ -22,7 +32,7 @@ while True:
 	print("reading card now")
 	iso = card_util.read_card()
 
-	cv_util.begin_scanning(timeout = 10, iso = iso)
+	cv_util.begin_scanning(timeout = 30, iso = iso)
 
 	break
 
