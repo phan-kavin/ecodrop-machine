@@ -16,11 +16,3 @@ def init():
 	firebase_admin.initialize_app(cred)
 
 	db = firestore.client()
-
-def change():
-	user_db = db.collection('users')
-
-	doc_ref = user_db.document(iso)
-	doc_ref.set({
-		'bottles': random.randint(0, 101)
-	})
