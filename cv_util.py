@@ -1,10 +1,8 @@
 from imutils.video import VideoStream
 import datetime
-import argparse
 import imutils
 import time
 import cv2
-import numpy as np
 from pyzbar import pyzbar
 
 time_skip = 1
@@ -47,13 +45,6 @@ def process_frame(iso):
 	frame = video_stream.read()
 	frame = imutils.resize(frame, width=1080, height = 720)
 	frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-	frame = cv2.GaussianBlur(frame, (3, 3), 0)
-	frame = imutils.auto_canny(frame)
-	ret, thresh = cv2.threshold(frame, 127, 255, 0)
-	im2, contours = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-	contours_np = np.array(contours).reshape((-1,1,2)).astype(np.int32)
-
-	cv2.drawContours(frame, contours_np, -1, (0,255,0), 3)
 
 	# decode for bar codes
 	barcodes = pyzbar.decode(frame)
@@ -89,7 +80,6 @@ def process_frame(iso):
 
 	# show the frame
 	cv2.imshow("Frame", frame)
-	key = cv2.waitKey(1) & 0xFF
 
 # properly disposes of the OpenCV tools
 def dispose():
