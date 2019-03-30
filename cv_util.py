@@ -1,5 +1,4 @@
 from imutils.video import VideoStream
-import datetime
 import imutils
 import time
 import cv2
@@ -73,15 +72,10 @@ def process_frame(iso):
 		cv2.putText(frame, text, (x, y - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 
-	# draw the timestamp on the frame
-	timestamp = datetime.datetime.now()
-	ts = timestamp.strftime("%A %d %B %Y %I:%M:%S%p")
-
-	ts += " | iso: "
-	ts += iso
+	ts = "iso: " + iso
 
 	cv2.putText(frame, ts, (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX,
-		0.35, (0, 0, 255), 1)
+		0.75, (0, 0, 255), 1)
 
 	# show the frame
 	cv2.imshow("Frame", frame)
