@@ -44,7 +44,6 @@ def undistort(frame):
 	cam[1, 1] = 10.0
 
 	undist = cv2.undistort(frame, cam, distCo)
-	undist = imutils.resize(frame, width = 256)
 
 	return undist
 
@@ -73,7 +72,7 @@ def begin_scanning(timeout, iso):
 # the actual processing of the frame
 def process_frame(iso):
 	frame = video_stream.read()
-	frame = imutils.resize(frame, width = 512)
+	frame = imutils.resize(frame, width = 680)
 	frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 	frame = undistort(frame)
 
