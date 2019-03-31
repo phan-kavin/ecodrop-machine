@@ -65,6 +65,8 @@ def begin_scanning(timeout, user):
 			last_frame_time = current_time
 
 			process_frame(user)
+			
+	cv2.destroyAllWindows()
 
 # remove any barrel distortion from image
 def undistort(frame):
