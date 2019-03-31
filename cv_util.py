@@ -127,7 +127,7 @@ def process_frame(user):
 
 	frame = imutils.resize(frame, width = 1360)
 
-	cv2.putText(frame, ts, (20, 20), cv2.FONT_HERSHEY_SIMPLEX,
+	cv2.putText(frame, ts, (20, 40), cv2.FONT_HERSHEY_SIMPLEX,
 		0.75, (0, 0, 255), 1)
 
 	msg = "Please insert a bottle"
@@ -137,7 +137,7 @@ def process_frame(user):
 		msg = "Please wait {}ms".format(cooldown)
 		msg_color = (255, 0, 0)
 
-	cv2.putText(frame, msg, (20, frame.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX,
+	cv2.putText(frame, msg, (20, frame.shape[0] - 60), cv2.FONT_HERSHEY_SIMPLEX,
 		0.5, msg_color, 1)
 
 	# show the frame
