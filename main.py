@@ -36,7 +36,4 @@ while True:
 
 	fb_util.update_user(iso, user)
 
-	break
-
-
 cv_util.dispose()
