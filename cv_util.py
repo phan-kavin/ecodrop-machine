@@ -21,6 +21,29 @@ def init(fps, onPi):
 	# allow camera to warmup
 	time.sleep(2.0)
 
+# begin the loop to process the frames from the video stream
+def begin_scanning(timeout, iso):
+	start_time = time.time()
+	last_frame_time = start_time
+	current_time = None
+
+	while True:
+		key = cv2.waitKey(1) & 0xFF
+
+		if key != 1:
+			break
+
+		current_time = time.time()
+
+		if current_time - start_time >= timeout:
+			break
+
+		if current_time - last_frame_time >= time_skip:
+			last_frame_time = current_time
+
+			process_frame(iso)
+
+# remove any barrel distortion from image
 def undistort(frame):
 	width = frame.shape[1]
 	height = frame.shape[0]
@@ -46,28 +69,6 @@ def undistort(frame):
 	undist = cv2.undistort(frame, cam, distCo)
 
 	return undist
-
-# begin the loop to process the frames from the video stream
-def begin_scanning(timeout, iso):
-	start_time = time.time()
-	last_frame_time = start_time
-	current_time = None
-
-	while True:
-		key = cv2.waitKey(1) & 0xFF
-
-		if key == ord('q'):
-			break
-
-		current_time = time.time()
-
-		if current_time - start_time >= timeout:
-			break
-
-		if current_time - last_frame_time >= time_skip:
-			last_frame_time = current_time
-
-			process_frame(iso)
 
 # the actual processing of the frame
 def process_frame(iso):
