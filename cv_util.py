@@ -34,7 +34,7 @@ def process_bottle(user, barcodeData):
 
 		user.points += 2
 
-		cooldown = 2.0
+		cooldown = 4.0
 
 # begin the loop to process the frames from the video stream
 def begin_scanning(timeout, user):
@@ -125,20 +125,20 @@ def process_frame(user):
 
 	ts = "Welcome, " + user.f_name + ", swipe again to finish"
 
-	frame = imutils.resize(frame, width = 1360)
-
-	cv2.putText(frame, ts, (20, 40), cv2.FONT_HERSHEY_SIMPLEX,
-		0.75, (0, 0, 255), 1)
+	cv2.putText(frame, ts, (20, 20), cv2.FONT_HERSHEY_SIMPLEX,
+		0.4, (0, 0, 255), 1)
 
 	msg = "Please insert a bottle"
 	msg_color = (0, 255, 0)
 
 	if cooldown > 0:
-		msg = "Please wait {}ms".format(cooldown)
+		msg = "Please wait {}ms".format(round(cooldown, 2))
 		msg_color = (255, 0, 0)
 
-	cv2.putText(frame, msg, (20, frame.shape[0] - 60), cv2.FONT_HERSHEY_SIMPLEX,
-		0.5, msg_color, 1)
+	cv2.putText(frame, msg, (20, 40), cv2.FONT_HERSHEY_SIMPLEX,
+		0.4, msg_color, 1)
+
+	frame = imutils.resize(frame, width = 1360)
 
 	# show the frame
 	cv2.imshow("EcoDrop", frame)
