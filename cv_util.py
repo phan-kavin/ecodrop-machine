@@ -48,7 +48,7 @@ def begin_scanning(timeout, user):
 
 		current_time = time.time()
 
-		if current_time - start_time >= timeout:
+		if time_skip > 0 and current_time - start_time >= timeout:
 			break
 		
 		if cooldown > 0.0:
