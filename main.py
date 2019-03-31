@@ -27,6 +27,8 @@ while True:
 	# need to authenticate users first
 	# probably update display right here
 
+	cv_util.display_init_screen()
+
 	print("reading card now")
 	iso = card_util.read_card()
 
