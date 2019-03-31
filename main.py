@@ -4,8 +4,6 @@ import fb_util
 import card_util
 import cv_util
 
-import time
-
 def on_pi():
 	_, nodename, _, _, _ = os.uname()
 
