@@ -21,6 +21,9 @@ def init(fps, onPi):
 	# allow camera to warmup
 	time.sleep(2.0)
 
+def process_bottle(barcodeData):
+	print(barcodeData)
+
 # begin the loop to process the frames from the video stream
 def begin_scanning(timeout, iso):
 	start_time = time.time()
@@ -98,6 +101,8 @@ def process_frame(iso):
 		text = "{} ({})".format(barcodeData, barcodeType)
 		cv2.putText(frame, text, (x, y - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+		
+		process_bottle(barcodeData)
 
 	ts = "iso: " + iso
 
