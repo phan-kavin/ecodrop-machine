@@ -55,10 +55,10 @@ def begin_scanning(timeout, user):
 			break
 
 		if time_skip < 0 or current_time - last_frame_time >= time_skip:
-			last_frame_time = current_time
-
 			if cooldown > 0.0:
 				cooldown -= current_time - last_frame_time
+
+			last_frame_time = current_time
 
 			process_frame(user)
 
