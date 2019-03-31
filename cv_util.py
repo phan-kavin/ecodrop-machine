@@ -24,14 +24,13 @@ def init(fps, onPi):
 	time.sleep(2.0)
 
 def process_bottle(user, barcodeData):
-	global cooldown
+	if barcodeData == "0096619756803":
+		print("found a water bottle")
+		global cooldown
 
-	print(barcodeData)
-	print(type(barcodeData))
+		user.points += 2
 
-	user.points += 2
-
-	cooldown = 2.0
+		cooldown = 2.0
 
 # begin the loop to process the frames from the video stream
 def begin_scanning(timeout, user):
@@ -54,13 +53,12 @@ def begin_scanning(timeout, user):
 		if time_skip > 0 and current_time - start_time >= timeout:
 			print("Timed out")
 			break
-		
-		if cooldown > 0.0:
-			cooldown -= current_time - start_time
-			print(cooldown)
 
 		if time_skip < 0 or current_time - last_frame_time >= time_skip:
 			last_frame_time = current_time
+
+			if cooldown > 0.0:
+				cooldown -= current_time - last_frame_time
 
 			process_frame(user)
 
