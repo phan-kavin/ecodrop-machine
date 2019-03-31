@@ -34,6 +34,8 @@ while True:
 
 	cv_util.begin_scanning(timeout = 30, user = user)
 
+	fb_util.update_user(iso, user)
+
 	break
 
 

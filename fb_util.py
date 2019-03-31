@@ -52,9 +52,8 @@ def get_user(iso):
 
 	return user_obj
 
-def add_points_iso(iso, user, points):
+def update_user(iso, user):
 	user_dict = user.to_dict()
 	user_doc_ref = users_coll.document(iso)
-
-	user_dict["points"] += points
+	
 	user_doc_ref.set(user_dict)
