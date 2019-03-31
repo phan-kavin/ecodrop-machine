@@ -32,7 +32,7 @@ while True:
 	print("reading card now")
 	iso = card_util.read_card()
 
-	cv_util.begin_scanning(timeout = 30, iso = iso)
+	cv_util.begin_scanning(timeout = 99999999, iso = iso)
 
 	break
 
