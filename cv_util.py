@@ -152,3 +152,4 @@ def dispose():
 def display_init_screen():
 	img = cv2.imread("./res/bg.jpg", 0)
 	cv2.imshow("EcoDrop", img)
+	cv2.waitKey()
