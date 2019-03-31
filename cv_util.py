@@ -41,7 +41,7 @@ def begin_scanning(timeout, user):
 	current_time = None
 
 	while True:
-		key = cv2.waitKey(33)
+		key = cv2.waitKey(3)
 
 		# exit on enter key
 		if key == 13:
