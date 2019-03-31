@@ -41,7 +41,7 @@ def read_card():
 	# join is a method of str,
 	# so it can only be used on strings!
 	iso = "".join(iso_buffer)
-	iso = iso[6:]
+	iso = iso[6:-1]
 	iso_buffer.clear()
 	# print("read iso: {}".format(iso)
 
