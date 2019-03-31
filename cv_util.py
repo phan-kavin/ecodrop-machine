@@ -20,10 +20,6 @@ def init(fps, onPi):
 	# start video stream using either the available web cam or the Raspberry Pi Camera
 	video_stream = VideoStream(usePiCamera = onPi).start()
 
-	#make it full screen
-	cv2.namedWindow("EcoDrop", cv2.WND_PROP_FULLSCREEN)
-	cv2.setWindowProperty("EcoDrop",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
-
 	# allow camera to warmup
 	time.sleep(2.0)
 
@@ -39,6 +35,10 @@ def process_bottle(user, barcodeData):
 # begin the loop to process the frames from the video stream
 def begin_scanning(timeout, user):
 	global cooldown
+
+	# make it full screen
+	cv2.namedWindow("EcoDrop", cv2.WND_PROP_FULLSCREEN)
+	cv2.setWindowProperty("EcoDrop",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
 
 	start_time = time.time()
 	last_frame_time = start_time
@@ -148,8 +148,3 @@ def dispose():
 	video_stream.stop()
 	time.sleep(0.1)
 	cv2.destroyAllWindows()
-
-def display_init_screen():
-	img = cv2.imread("./res/bg.jpg", 0)
-	cv2.imshow("EcoDrop", img)
-	cv2.waitKey()
