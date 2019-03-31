@@ -21,7 +21,7 @@ def init(fps, onPi):
 	video_stream = VideoStream(usePiCamera = onPi).start()
 
 	# allow camera to warmup
-	time.sleep(2.0)
+	time.sleep(0.5)
 
 def process_bottle(user, barcodeData):
 	if barcodeData == "0096619756803":
@@ -65,7 +65,7 @@ def begin_scanning(timeout, user):
 			last_frame_time = current_time
 
 			process_frame(user)
-			
+
 	cv2.destroyAllWindows()
 
 # remove any barrel distortion from image
