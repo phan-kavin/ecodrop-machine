@@ -19,7 +19,7 @@ print("Firebase done initializing")
 card_util.init()
 print("Card swiper done initializing")
 
-cv_util.init(fps = 30, onPi = on_pi())
+cv_util.init(fps = -1, onPi = on_pi())
 print("OpenCV done initializing")
 
 # begin program
@@ -30,7 +30,7 @@ while True:
 	print("reading card now")
 	iso = card_util.read_card()
 
-	cv_util.begin_scanning(timeout = 99999999, iso = iso)
+	cv_util.begin_scanning(timeout = 30, iso = iso)
 
 	break
 
