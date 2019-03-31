@@ -45,11 +45,13 @@ def begin_scanning(timeout, user):
 
 		# exit on enter key
 		if key == 13:
+			print("Exiting scanning phase by 'enter'")
 			break
 
 		current_time = time.time()
 
 		if time_skip > 0 and current_time - start_time >= timeout:
+			print("Timed out")
 			break
 		
 		if cooldown > 0.0:
