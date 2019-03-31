@@ -121,8 +121,18 @@ def process_frame(user):
 
 	ts = "Welcome, " + user.f_name + ", swipe again to finish"
 
+	cv2.putText(frame, ts, (10, 10), cv2.FONT_HERSHEY_SIMPLEX,
+		0.75, (0, 0, 255), 1)
+
+	msg = "Please insert a bottle"
+	msg_color = (0, 255, 0)
+
+	if cooldown > 0:
+		msg = "Please wait {}ms".format(cooldown)
+		msg_color = (255, 0, 0)
+
 	cv2.putText(frame, ts, (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX,
-		0.5, (0, 0, 255), 1)
+		0.5, msg_color, 1)
 
 	# show the frame
 	cv2.imshow("Frame", frame)
