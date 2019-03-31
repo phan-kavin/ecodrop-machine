@@ -27,10 +27,11 @@ def process_bottle(user, barcodeData):
 	global cooldown
 
 	print(barcodeData)
+	print(type(barcodeData))
 
 	user.points += 2
 
-	cooldown = 2
+	cooldown = 2.0
 
 # begin the loop to process the frames from the video stream
 def begin_scanning(timeout, user):
@@ -56,6 +57,7 @@ def begin_scanning(timeout, user):
 		
 		if cooldown > 0.0:
 			cooldown -= current_time - start_time
+			print(cooldown)
 
 		if time_skip < 0 or current_time - last_frame_time >= time_skip:
 			last_frame_time = current_time
