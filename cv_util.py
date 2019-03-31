@@ -20,6 +20,10 @@ def init(fps, onPi):
 	# start video stream using either the available web cam or the Raspberry Pi Camera
 	video_stream = VideoStream(usePiCamera = onPi).start()
 
+	#make it full screen
+	cv2.namedWindow("EcoDrop", cv2.WND_PROP_FULLSCREEN)
+	cv2.setWindowProperty("EcoDrop",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
+
 	# allow camera to warmup
 	time.sleep(2.0)
 
