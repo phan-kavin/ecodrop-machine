@@ -44,6 +44,7 @@ def undistort(frame):
 	cam[1, 1] = 10.0
 
 	undist = cv2.undistort(frame, cam, distCo)
+	undist = cv2.undistort(undist, cam, distCo)
 
 	return undist
 
