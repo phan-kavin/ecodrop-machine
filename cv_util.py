@@ -2,6 +2,7 @@ from imutils.video import VideoStream
 import imutils
 import time
 import cv2
+import numpy as np
 from pyzbar import pyzbar
 
 time_skip = 1
@@ -19,6 +20,32 @@ def init(fps, onPi):
 
 	# allow camera to warmup
 	time.sleep(2.0)
+
+def undistort(frame):
+	width = frame.shape[1]
+	height = frame.shape[0]
+
+	distCo = np.zeros((4, 1), np.float64)
+	k1 = -5.0e-5
+	k2 = 0.0
+	p1 = 0.0
+	p2 = 0.0
+
+	distCo[0, 0] = k1
+	distCo[1, 0] = k2
+	distCo[2, 0] = p1
+	distCo[3, 0] = p2
+
+	cam = np.eye(3, dtype = np.float32)
+
+	cam[0, 2] = width / 2.0
+	cam[1, 2] = height / 2.0
+	cam[0, 0] = 10.0
+	cam[1, 1] = 10.0
+
+	undist = cv2.undistort(frame, cam, distCo)
+
+	return undist
 
 # begin the loop to process the frames from the video stream
 def begin_scanning(timeout, iso):
@@ -49,6 +76,7 @@ def process_frame(iso):
 	frame = video_stream.read()
 	frame = imutils.resize(frame, width=512)
 	frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+	frame = undistort(frame)
 
 	# decode for bar codes
 	barcodes = pyzbar.decode(frame)
