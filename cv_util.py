@@ -41,11 +41,11 @@ def begin_scanning(timeout, user):
 	current_time = None
 
 	while True:
-		key = cv2.waitKey(3)
+		key = cv2.waitKey(1)
 
 		# exit on enter key
-		if key == 13:
-			print("Exiting scanning phase by 'enter'")
+		if key != -1:
+			print("Exiting scanning phase by key input")
 			break
 
 		current_time = time.time()
