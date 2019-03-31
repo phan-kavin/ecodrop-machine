@@ -30,7 +30,9 @@ while True:
 	print("reading card now")
 	iso = card_util.read_card()
 
-	cv_util.begin_scanning(timeout = 30, iso = iso)
+	user = fb_util.get_user(iso)
+
+	cv_util.begin_scanning(timeout = 30, user = user)
 
 	break
 
