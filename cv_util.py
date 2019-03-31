@@ -121,7 +121,9 @@ def process_frame(user):
 
 	ts = "Welcome, " + user.f_name + ", swipe again to finish"
 
-	cv2.putText(frame, ts, (10, 10), cv2.FONT_HERSHEY_SIMPLEX,
+	frame = imutils.resize(frame, width = 1360)
+
+	cv2.putText(frame, ts, (20, 20), cv2.FONT_HERSHEY_SIMPLEX,
 		0.75, (0, 0, 255), 1)
 
 	msg = "Please insert a bottle"
@@ -131,11 +133,11 @@ def process_frame(user):
 		msg = "Please wait {}ms".format(cooldown)
 		msg_color = (255, 0, 0)
 
-	cv2.putText(frame, ts, (10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX,
+	cv2.putText(frame, msg, (20, frame.shape[0] - 20), cv2.FONT_HERSHEY_SIMPLEX,
 		0.5, msg_color, 1)
 
 	# show the frame
-	cv2.imshow("Frame", frame)
+	cv2.imshow("EcoDrop", frame)
 
 # properly disposes of the OpenCV tools
 def dispose():
