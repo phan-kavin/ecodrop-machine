@@ -1,4 +1,5 @@
 export DISPLAY=":0"
-unclutter -idle 0.01 -root
+
+./remove_mouse.sh
 
 python3 main.py
